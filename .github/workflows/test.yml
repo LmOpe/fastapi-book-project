@@ -16,13 +16,13 @@ jobs:
             - name: Set up python
               uses: actions/setup-python@v5
               with:
-                python-version: "3. 13"
+                python-version: "3.13"
                 cache: "pip"
             
             - name: Install dependencies
               run: |
                 python -m pip install --upgrade pip
-                python -m pip install -r .[txt]
+                python -m pip install -r requirements.txt
             
             - name: Run Pytest
               run: pytest
