@@ -15,7 +15,7 @@ jobs:
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "$GCE_SSH_KEY" > ~/.ssh/id_rsa
+          echo "$GCE_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
       - name: SSH to Google Cloud Platform compute instances
