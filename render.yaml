@@ -21,6 +21,11 @@ services:
           name: fastapi-book
           type: web
           property: hostport
+      - key: PORT
+        fromService:
+          name: fastapi-book
+          type: web
+          property: port
     
     startCommand: |
       echo "Pinging backend at $BACKEND_URL"
