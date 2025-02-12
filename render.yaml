@@ -17,4 +17,11 @@ services:
     dockerfilePath: ./nginx.Dockerfile
     envVars:
       - key: BACKEND_URL
-        value: http://fastapi-book:8000
+        fromService:
+          name: fastapi-book
+          type: web
+          property: hostport
+    
+    startCommand: |
+      echo "Pinging backend at $BACKEND_URL"
+      curl -v $BACKEND_URL || echo "Backend unreachable!"
