@@ -7,27 +7,15 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up SSH key
+      - name: Deploy via Docker
         run: |
-          mkdir -p ~/.ssh
-          echo "$GCE_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H 34.132.18.148 >> ~/.ssh/known_hosts
-      
-      - name: Debug SSH Connection
-        run: ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no lawalmuhammed44@34.132.18.148 "echo 'SSH works!'"
-      
-      - name: Deploy via SSH
-        run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no lawalmuhammed44@34.132.18.148 << 'EOF'
           cd fastapi-book-project || exit 1
           git pull origin main || exit 1
           docker-compose down || exit 1
           docker-compose up -d || exit 1
-          EOF
-      
