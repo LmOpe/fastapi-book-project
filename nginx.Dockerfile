@@ -3,15 +3,12 @@ FROM nginx:alpine
 # Remove default Nginx config
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy custom Nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copy SSL certificates and Nginx configuration
 COPY ./certs /etc/nginx/certs
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose port 80 and 443 for incoming traffic
 EXPOSE 80
 EXPOSE 443
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD envsubst '$BACKEND_URL' < /etc/nginx/nginx.conf > /etc/nginx/conf.d/default.conf && \
+    nginx -g "daemon off;"
