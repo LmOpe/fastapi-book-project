@@ -75,7 +75,7 @@ async def get_book(book_id: int) -> Book:
         status_code=status.HTTP_200_OK
     )
 
-@router.get("/test", status_code=status.HTTP_200_OK)
+@router.get("/deploy/test", status_code=status.HTTP_200_OK)
 async def test_deployment():
     return JSONResponse(
         content={"Test": "deployment success"},
