@@ -25,6 +25,7 @@ jobs:
           zone: ${{ secrets.GCE_ZONE }}
           instance_name: ${{ secrets.GCE_INSTANCE_NAME }}
           ssh_private_key: ${{ secrets.GCE_SSH_PRIVATE_KEY }}
+          script: pwd
           
       - name: Upload latest code
         run: |
