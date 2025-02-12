@@ -26,7 +26,7 @@ jobs:
           instance_name: ${{ secrets.GCE_INSTANCE_NAME }}
           ssh_private_key: ${{ secrets.GCE_SSH_PRIVATE_KEY }}
           script: |
-            cd fastapi-book-project &&
-            git pull origin main &&
-            docker-compose down &&
+            cd fastapi-book-project
+            git pull origin main
+            docker-compose down
             docker-compose up -d
