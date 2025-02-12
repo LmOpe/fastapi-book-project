@@ -1,0 +1,20 @@
+services:
+  - name: fastapi-book
+    type: web
+    env: docker
+    repo: https://github.com/LmOpe/fastapi-book-project
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8000
+
+  - name: nginx-proxy
+    type: web
+    env: docker
+    repo: https://github.com/LmOpe/fastapi-book-project
+    plan: free
+    dockerfilePath: ./nginx.Dockerfile
+    envVars:
+      - key: BACKEND_URL
+        value: http://fastapi-book:8000
