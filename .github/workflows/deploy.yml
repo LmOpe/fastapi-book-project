@@ -15,7 +15,7 @@ jobs:
 
       - name: Deploy via Docker
         run: |
-          cd fastapi-book-project || exit 1
+          cd ~/fastapi-book-project || exit 1
           git pull origin main || exit 1
           docker-compose down || exit 1
           docker-compose up -d || exit 1
